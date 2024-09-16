@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SnakeApp: App {
+    @StateObject var model = GameViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(model)
         }
     }
 }
