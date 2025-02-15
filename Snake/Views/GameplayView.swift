@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct GameplayView: View {
     @EnvironmentObject var model: GameViewModel
 
@@ -31,9 +30,16 @@ struct GameplayView: View {
                     
                     Spacer()
                     
-                    Text("Score: \(model.score)")
-                        .font(.headline)
-                        .padding()
+                    HStack {
+                        Text("Score")
+                            .opacity(0.7)
+                        Text("\(model.score)")
+                    }
+                    .font(.headline)
+                    .fontDesign(.monospaced)
+                    .fontWeight(.bold)
+                    .textCase(.uppercase)
+                    .padding()
                 }
                 .background(
                     GeometryReader { geometry in

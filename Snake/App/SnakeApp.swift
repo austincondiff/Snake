@@ -6,15 +6,28 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SnakeApp: App {
-    @StateObject var model = GameViewModel()
+    let container: ModelContainer
+    @StateObject private var gameViewModel: GameViewModel
+    
+    init() {
+        do {
+            container = try ModelContainer(for: HighScore.self)
+            let context = container.mainContext
+            _gameViewModel = StateObject(wrappedValue: GameViewModel(modelContext: context))
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
+        }
+    }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(model)
+                .environmentObject(gameViewModel)
+                .modelContainer(container)
         }
     }
 }

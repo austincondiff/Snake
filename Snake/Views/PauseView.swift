@@ -16,9 +16,6 @@ struct PauseView: View {
             Text("Paused")
                 .foregroundColor(Color(.label))
                 .font(.largeTitle)
-                .fontDesign(.monospaced)
-                .fontWeight(.bold)
-                .textCase(.uppercase)
             Spacer()
             VStack(spacing: 16) {
                 Button("Resume") {
@@ -26,7 +23,6 @@ struct PauseView: View {
                     model.startTimer()
                 }
                 .buttonStyle(.primary)
-                
                 Button("Main Menu") {
                     model.stopGame()
                 }
@@ -34,6 +30,9 @@ struct PauseView: View {
             }
         }
         .padding(20)
+        .fontDesign(.monospaced)
+        .fontWeight(.bold)
+        .textCase(.uppercase)
     }
 }
 

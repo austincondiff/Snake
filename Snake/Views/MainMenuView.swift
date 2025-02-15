@@ -14,18 +14,13 @@ struct MainMenuView: View {
         VStack(spacing: 24) {
             Spacer()
             Text("Snake")
-                .foregroundColor(Color(.label))
                 .font(.largeTitle)
-                .fontDesign(.monospaced)
-                .fontWeight(.bold)
-                .textCase(.uppercase)
             Spacer()
             VStack(spacing: 16) {
                 Button("Start Game") {
                     model.startNewGame()
                 }
                 .buttonStyle(.primary)
-                
                 Button("Settings") {
                     model.showingSettings.toggle()
                 }
@@ -33,6 +28,9 @@ struct MainMenuView: View {
             }
         }
         .padding(20)
+        .fontDesign(.monospaced)
+        .fontWeight(.bold)
+        .textCase(.uppercase)
     }
 }
 

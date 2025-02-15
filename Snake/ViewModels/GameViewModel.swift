@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 class GameViewModel: ObservableObject {
     @Published var mainMenu: Bool = true
     @Published var timerInterval = 0.2
     @Published var gridSize:Point = Point(x: 0, y: 0)
-    @Published var size:Size = Size.medium {
+    @Published var size: Size = UserDefaultsManager.shared.getGridSize() {
         didSet {
+            UserDefaultsManager.shared.setGridSize(size)
             gridSize = screenSize(size)
             print(gridSize)
         }
@@ -21,12 +23,33 @@ class GameViewModel: ObservableObject {
     @Published var food = Point(x: 15, y: 15)
     @Published var gameover = true
     @Published var showingSettings = false
-    @Published var isWallEnabled = false
+    @Published var isWallEnabled: Bool = UserDefaultsManager.shared.getWallEnabled() {
+        didSet {
+            UserDefaultsManager.shared.setWallEnabled(isWallEnabled)
+        }
+    }
     @Published var timer: Timer?
     @Published var lastGestureTranslation: CGSize = CGSize(width: 0, height: 0)
     @Published var paused: Bool = false
     @Published var toolbarHeight: CGFloat = 0
     @Published var score: Int = 0
+    @Published var isHapticsEnabled: Bool = UserDefaultsManager.shared.getHapticsEnabled() {
+        didSet {
+            UserDefaultsManager.shared.setHapticsEnabled(isHapticsEnabled)
+            HapticManager.shared.isEnabled = isHapticsEnabled
+        }
+    }
+    @Published var isNewHighScore: Bool = false
+    private let modelContext: ModelContext
+
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        // Load saved settings
+        self.isWallEnabled = UserDefaultsManager.shared.getWallEnabled()
+        self.size = UserDefaultsManager.shared.getGridSize()
+        self.isHapticsEnabled = UserDefaultsManager.shared.getHapticsEnabled()
+        HapticManager.shared.isEnabled = self.isHapticsEnabled
+    }
 
     func screenSize(_ size:Size) -> Point {
         let gridCount = size.rawValue
@@ -154,6 +177,7 @@ class GameViewModel: ObservableObject {
             self.timer?.invalidate()
             self.startTimer()
             self.score += 10
+            HapticManager.shared.playSuccess()
         } else {
             self.snake.body.removeFirst()
         }
@@ -169,6 +193,7 @@ class GameViewModel: ObservableObject {
             self.gameover = true
             self.timer?.invalidate()
             self.timerInterval = 0.2
+            self.checkHighScore()
         }
     }
 
@@ -182,5 +207,24 @@ class GameViewModel: ObservableObject {
         }
     }
 
-    init() {}
+    func checkHighScore() {
+        let descriptor = FetchDescriptor<HighScore>(
+            sortBy: [SortDescriptor(\HighScore.score, order: .reverse)]
+        )
+        
+        do {
+            let highScores = try modelContext.fetch(descriptor)
+            let topScore = highScores.first?.score ?? 0
+            if score > topScore {
+                isNewHighScore = true
+                let newHighScore = HighScore(score: score)
+                modelContext.insert(newHighScore)
+                try modelContext.save()
+            } else {
+                isNewHighScore = false
+            }
+        } catch {
+            print("Failed to fetch high score: \(error)")
+        }
+    }
 }
