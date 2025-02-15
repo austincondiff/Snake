@@ -61,3 +61,8 @@ See the [LICENSE](LICENSE) file for details.
 ## Acknowledgments
 
 - Inspired by the classic Snake game
+
+## Screen Recording
+
+https://github.com/user-attachments/assets/ec43de1e-f798-4b3e-b708-8a321a2427a2
+
