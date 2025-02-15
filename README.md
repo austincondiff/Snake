@@ -2,8 +2,6 @@
 
 A modern take on the classic Snake game, reimagined with intuitive gesture controls for iOS. Swipe naturally in any direction to guide your snake – no buttons needed!
 
-![Snake Game Screenshot](screenshots/gameplay.png)
-
 ## Features
 
 - 🎮 **Natural Gesture Controls**: Simply swipe in any direction to control your snake
