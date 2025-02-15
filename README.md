@@ -61,5 +61,3 @@ See the [LICENSE](LICENSE) file for details.
 ## Acknowledgments
 
 - Inspired by the classic Snake game
-- Built with modern iOS development practices
-- Designed for intuitive touch interactions
