@@ -40,8 +40,7 @@ A modern take on the classic Snake game, reimagined with intuitive gesture contr
 
 Clone the repository and open in Xcode:
 
-```
-bash
+```bash
 git clone https://github.com/austincondiff/Snake.git
 cd Snake
 open Snake.xcodeproj
