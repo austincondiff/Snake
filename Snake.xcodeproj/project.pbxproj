@@ -3,32 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		B65AD03F2A0E8875006D66EA /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AD03E2A0E8875006D66EA /* GameOverView.swift */; };
-		B65AD0412A0E88D8006D66EA /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AD0402A0E88D8006D66EA /* GameplayView.swift */; };
-		B65AD0432A0E8956006D66EA /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AD0422A0E8956006D66EA /* PauseView.swift */; };
-		B65AD0452A0E8A3C006D66EA /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AD0442A0E8A3C006D66EA /* GameViewModel.swift */; };
-		B66DE13D29D2B7B600D9E7D1 /* SnakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE13C29D2B7B600D9E7D1 /* SnakeApp.swift */; };
-		B66DE13F29D2B7B600D9E7D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DE13E29D2B7B600D9E7D1 /* ContentView.swift */; };
-		B66DE14129D2B7B700D9E7D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B66DE14029D2B7B700D9E7D1 /* Assets.xcassets */; };
-		B66DE14529D2B7B700D9E7D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B66DE14429D2B7B700D9E7D1 /* Preview Assets.xcassets */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		B65AD03E2A0E8875006D66EA /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
-		B65AD0402A0E88D8006D66EA /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
-		B65AD0422A0E8956006D66EA /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
-		B65AD0442A0E8A3C006D66EA /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		B66DE13929D2B7B600D9E7D1 /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B66DE13C29D2B7B600D9E7D1 /* SnakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeApp.swift; sourceTree = "<group>"; };
-		B66DE13E29D2B7B600D9E7D1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B66DE14029D2B7B700D9E7D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B66DE14229D2B7B700D9E7D1 /* Snake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snake.entitlements; sourceTree = "<group>"; };
-		B66DE14429D2B7B700D9E7D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B6566C7A2D556CD10030FD48 /* Snake */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Snake; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B66DE13629D2B7B600D9E7D1 /* Frameworks */ = {
@@ -44,7 +28,7 @@
 		B66DE13029D2B7B600D9E7D1 = {
 			isa = PBXGroup;
 			children = (
-				B66DE13B29D2B7B600D9E7D1 /* Snake */,
+				B6566C7A2D556CD10030FD48 /* Snake */,
 				B66DE13A29D2B7B600D9E7D1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,30 +39,6 @@
 				B66DE13929D2B7B600D9E7D1 /* Snake.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B66DE13B29D2B7B600D9E7D1 /* Snake */ = {
-			isa = PBXGroup;
-			children = (
-				B66DE13C29D2B7B600D9E7D1 /* SnakeApp.swift */,
-				B66DE13E29D2B7B600D9E7D1 /* ContentView.swift */,
-				B65AD0442A0E8A3C006D66EA /* GameViewModel.swift */,
-				B66DE14029D2B7B700D9E7D1 /* Assets.xcassets */,
-				B66DE14229D2B7B700D9E7D1 /* Snake.entitlements */,
-				B66DE14329D2B7B700D9E7D1 /* Preview Content */,
-				B65AD03E2A0E8875006D66EA /* GameOverView.swift */,
-				B65AD0402A0E88D8006D66EA /* GameplayView.swift */,
-				B65AD0422A0E8956006D66EA /* PauseView.swift */,
-			);
-			path = Snake;
-			sourceTree = "<group>";
-		};
-		B66DE14329D2B7B700D9E7D1 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B66DE14429D2B7B700D9E7D1 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +56,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				B6566C7A2D556CD10030FD48 /* Snake */,
+			);
 			name = Snake;
 			productName = Snake;
 			productReference = B66DE13929D2B7B600D9E7D1 /* Snake.app */;
@@ -109,7 +72,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					B66DE13829D2B7B600D9E7D1 = {
 						CreatedOnToolsVersion = 14.2;
@@ -139,8 +102,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B66DE14529D2B7B700D9E7D1 /* Preview Assets.xcassets in Resources */,
-				B66DE14129D2B7B700D9E7D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,12 +112,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B65AD0452A0E8A3C006D66EA /* GameViewModel.swift in Sources */,
-				B66DE13F29D2B7B600D9E7D1 /* ContentView.swift in Sources */,
-				B65AD03F2A0E8875006D66EA /* GameOverView.swift in Sources */,
-				B65AD0432A0E8956006D66EA /* PauseView.swift in Sources */,
-				B65AD0412A0E88D8006D66EA /* GameplayView.swift in Sources */,
-				B66DE13D29D2B7B600D9E7D1 /* SnakeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,9 +151,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -254,9 +211,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -280,6 +239,7 @@
 				CODE_SIGN_ENTITLEMENTS = Snake/Snake.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Snake/Preview Content\"";
 				DEVELOPMENT_TEAM = 9VS2VKC5LQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -318,6 +278,7 @@
 				CODE_SIGN_ENTITLEMENTS = Snake/Snake.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Snake/Preview Content\"";
 				DEVELOPMENT_TEAM = 9VS2VKC5LQ;
 				ENABLE_HARDENED_RUNTIME = YES;

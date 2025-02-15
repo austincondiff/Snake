@@ -25,13 +25,27 @@ class GameViewModel: ObservableObject {
     @Published var timer: Timer?
     @Published var lastGestureTranslation: CGSize = CGSize(width: 0, height: 0)
     @Published var paused: Bool = false
+    @Published var toolbarHeight: CGFloat = 0
+    @Published var score: Int = 0
 
     func screenSize(_ size:Size) -> Point {
         let gridCount = size.rawValue
         let screenBounds = UIScreen.main.bounds
-        let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets ?? .zero
-        let safeAreaScreenSize = CGSize(width: screenBounds.width - safeAreaInsets.left - safeAreaInsets.right,
-                                        height: screenBounds.height - safeAreaInsets.top - safeAreaInsets.bottom)
+        
+        // Get the window scene's safe area insets
+        let safeAreaInsets: UIEdgeInsets
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            safeAreaInsets = window.safeAreaInsets
+        } else {
+            safeAreaInsets = .zero
+        }
+        
+        let safeAreaScreenSize = CGSize(
+            width: screenBounds.width - safeAreaInsets.left - safeAreaInsets.right,
+            height: screenBounds.height - safeAreaInsets.top - safeAreaInsets.bottom - toolbarHeight
+        )
+        
         let gridItemSize = Int(safeAreaScreenSize.width)/gridCount
         let newGridSize = Point(x: gridCount, y: Int(safeAreaScreenSize.height)/gridItemSize)
 
@@ -95,56 +109,63 @@ class GameViewModel: ObservableObject {
         self.food = Point(x: 15, y: 15)
         self.mainMenu = false
         self.gameover = false
+        self.score = 0
         self.startTimer()
+    }
+    
+    func stopGame() {
+        self.mainMenu = true
+        self.gameover = true
+        self.paused = false
     }
 
     func moveSnake() {
         var newHead: Point
-        var snake = self.snake
-
-        if snake.proposedDirection != nil {
-            snake.direction = snake.proposedDirection ?? .left
-            snake.proposedDirection = nil
+        
+        if self.snake.proposedDirection != nil {
+            self.snake.direction = self.snake.proposedDirection ?? .left
+            self.snake.proposedDirection = nil
         }
         
-        print(snake.direction)
-        print(snake.head)
+        print(self.snake.direction)
+        print(self.snake.head)
 
-        switch snake.direction {
+        switch self.snake.direction {
             case .up:
-            newHead = Point(x: snake.head.x, y: !isWallEnabled && snake.head.y == 0 ? gridSize.y-1 : snake.head.y - 1)
+                newHead = Point(x: self.snake.head.x, y: !isWallEnabled && self.snake.head.y == 0 ? gridSize.y-1 : self.snake.head.y - 1)
             case .down:
-            newHead = Point(x: snake.head.x, y: !isWallEnabled && snake.head.y == gridSize.y ? 0 : snake.head.y + 1)
+                newHead = Point(x: self.snake.head.x, y: !isWallEnabled && self.snake.head.y == gridSize.y-1 ? 0 : self.snake.head.y + 1)
             case .left:
-            newHead = Point(x: !isWallEnabled && snake.head.x == 0 ? gridSize.x-1 : snake.head.x - 1, y: snake.head.y)
+                newHead = Point(x: !isWallEnabled && self.snake.head.x == 0 ? gridSize.x-1 : self.snake.head.x - 1, y: self.snake.head.y)
             case .right:
-            newHead = Point(x: !isWallEnabled && snake.head.x == gridSize.x ? 0 : snake.head.x + 1, y: snake.head.y)
+                newHead = Point(x: !isWallEnabled && self.snake.head.x == gridSize.x-1 ? 0 : self.snake.head.x + 1, y: self.snake.head.y)
         }
 
-       snake.body.append(newHead)
+        self.snake.body.append(newHead)
 
-       if newHead == food {
-           // generate new food
-           var randomPoint: Point
-           repeat {
-               randomPoint = Point(x: Int.random(in: 0..<gridSize.x), y: Int.random(in: 0..<gridSize.y))
-           } while snake.body.contains(randomPoint)
-           self.food = randomPoint
-           self.timerInterval = timerInterval * 0.9
-           self.timer?.invalidate()
-           self.startTimer()
-       } else {
-           snake.body.removeFirst()
-       }
+        if newHead == food {
+            // generate new food
+            var randomPoint: Point
+            repeat {
+                randomPoint = Point(x: Int.random(in: 0..<gridSize.x), y: Int.random(in: 0..<gridSize.y))
+            } while snake.body.contains(randomPoint)
+            self.food = randomPoint
+            self.timerInterval = timerInterval * 0.9
+            self.timer?.invalidate()
+            self.startTimer()
+            self.score += 10
+        } else {
+            self.snake.body.removeFirst()
+        }
 
         // check for collision with walls or self
         if (self.isWallEnabled
-               && (snake.head.x < 0
-                    || snake.head.x >= gridSize.x
-                    || snake.head.y < 0
-                    || snake.head.y >= gridSize.y))
-            || snake.body.dropLast().contains(snake.head) {
-            print(snake.body, snake.head)
+               && (self.snake.head.x < 0
+                    || self.snake.head.x >= gridSize.x
+                    || self.snake.head.y < 0
+                    || self.snake.head.y >= gridSize.y))
+            || self.snake.body.dropLast().contains(self.snake.head) {
+            print(self.snake.body, self.snake.head)
             self.gameover = true
             self.timer?.invalidate()
             self.timerInterval = 0.2

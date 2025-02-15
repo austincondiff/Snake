@@ -38,12 +38,16 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if model.gameover {
-                GameOverView()
+                if model.mainMenu {
+                    MainMenuView()
+                } else {
+                    GameOverView()
+                }
             } else {
+                GameplayView()
                 if model.paused {
                     PauseView()
                 }
-                GameplayView()
 
             }
         }
@@ -56,6 +60,9 @@ struct ContentView: View {
                 .opacity(0.15)
                 .fontDesign(.monospaced)
                 .fontWeight(.bold)
+        }
+        .sheet(isPresented: $model.showingSettings) {
+            SettingsView(isPresented: $model.showingSettings, isWallEnabled: $model.isWallEnabled, size: $model.size)
         }
         .onAppear {
             model.startTimer()
